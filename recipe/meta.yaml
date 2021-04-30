@@ -11,7 +11,7 @@ source:
 
 build:
   noarch: python
-  number: 0
+  number: 1
   entry_points:
     - envs=envs.cli:envs
   script: {{ PYTHON }} -m pip install . -vv
@@ -46,6 +46,7 @@ about:
 
 extra:
   recipe-maintainers:
+    - mxr-conda
     - benhuff
     - oblute
     - rluria14

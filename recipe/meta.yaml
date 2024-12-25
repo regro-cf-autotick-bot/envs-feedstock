@@ -7,11 +7,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/envs-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/envs-{{ version }}.tar.gz
   sha256: 9d8435c6985d1cdd68299e04c58e2bdb8ae6cf66b2596a8079e6f9a93f2a0398
 
 build:
-  number: 0
+  number: 1
   noarch: python
   entry_points:
     - envs = envs.cli:envs
@@ -20,19 +20,20 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.6,<4.0
+    - python {{ python_min }}
     - poetry
   run:
     - click
     - jinja2
     - terminaltables
-    - python >=3.6,<4.0
+    - python >={{ python_min }},<4.0
 
 test:
   requires:
     - click
     - jinja2
     - terminaltables  
+    - python {{ python_min }}
   imports:
     - envs
   commands:
@@ -40,6 +41,7 @@ test:
     - envs --help
   requires:
     - pip
+    - python {{ python_min }}
 about:
   home: https://github.com/bjinwright/envs
   license: Apache-2.0
